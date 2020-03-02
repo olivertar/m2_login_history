@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-delimiter-login-history" template="Magento_Customer::account/navigation-delimiter.phtml" ifconfig="customerloginhistory/general/enabled">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">199</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-account-navigation-login-history" ifconfig="customerloginhistory/general/enabled">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Login History</argument>
+                    <argument name="path" xsi:type="string">loginhistory</argument>
+                    <argument name="sortOrder" xsi:type="number">200</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

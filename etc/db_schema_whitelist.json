@@ -1,0 +1,19 @@
+{
+    "login_history": {
+        "column": {
+            "login_id": true,
+            "customer_id": true,
+            "agent": true,
+            "ip": true,
+            "country": true,
+            "city": true,
+            "login_time": true
+        },
+        "index": {
+            "LOGIN_HISTORY_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

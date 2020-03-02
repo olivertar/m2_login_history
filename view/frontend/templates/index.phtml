@@ -1,0 +1,77 @@
+<?php if ($block->getLogins() && count($block->getLogins())) : ?>
+    <div class="block-actions loginhistory_actions">
+        <form action="<?= $block->escapeUrl($block->getSubmitUrl()) ?>" method="post" id="loginhistory_form">
+            <?= $block->escapeHtml(__('Check items to delete or')) ?>
+            <button type="button" class="action select" data-role="login-select-all"><span><?= $block->escapeHtml(__('select all')) ?></span></button>
+            <input type="hidden" name="login_history" id="login-history-field" value="" />
+            <div class="action-buttons">
+                <button type="button"
+                        title="<?= $block->escapeHtml(__('Delete Selected')) ?>"
+                        class="action primary delete-login-history"
+                        id="delete-login-history-button"
+                        data-role="login-delete-selected" >
+                    <span><?= $block->escapeHtml(__('Delete Selected')) ?></span>
+                </button>
+                <button type="button"
+                        title="<?= $block->escapeHtml(__('Delete All Records')) ?>"
+                        class="action secondary delete-all-login-history"
+                        id="delete-all-login-history-button"
+                        data-role="login-delete-all" >
+                    <span><?= $block->escapeHtml(__('Delete All Records')) ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="toolbar loginhistory_sortby top">
+        <?php echo $block->getChildHtml('loginhistory_sortby');?>
+    </div>
+    <div class="table-wrapper loginhistory">
+        <table class="data table table-loginhistory" id="loginhistory-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('Customer Logins')) ?></caption>
+            <thead>
+            <tr>
+                <th scope="col" class="col ip"><?= $block->escapeHtml(__('IP')) ?></th>
+                <?php if ($block->isGeoIpEnabled()): ?>
+                <th scope="col" class="col country"><?= $block->escapeHtml(__('Country')) ?></th>
+                <th scope="col" class="col city"><?= $block->escapeHtml(__('City')) ?></th>
+                <?php endif; ?>
+                <th scope="col" class="col datetime"><?= $block->escapeHtml(__('Date/Time')) ?></th>
+                <th scope="col" class="col agent"><?= $block->escapeHtml(__('Agent')) ?></th>
+                <th scope="col" class="col actions"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($block->getLogins() as $login) : ?>
+                <tr class="item-login_history">
+                    <td data-th="<?= $block->escapeHtmlAttr(__('IP')) ?>" class="col ip"><?= $block->escapeHtml($login['ip']) ?></td>
+                    <?php if ($block->isGeoIpEnabled()): ?>
+                    <td data-th="<?= $block->escapeHtmlAttr(__('Country')) ?>" class="col country"><?= $block->escapeHtml($login['country']) ?></td>
+                    <td data-th="<?= $block->escapeHtmlAttr(__('City')) ?>" class="col country"><?= $block->escapeHtml($login['city']) ?></td>
+                    <?php endif; ?>
+                    <td data-th="<?= $block->escapeHtmlAttr(__('DateTime')) ?>" class="col datetime"><?= $block->escapeHtml($login['login_time']) ?></td>
+                    <td data-th="<?= $block->escapeHtmlAttr(__('Agent')) ?>" class="col agent"><?= $block->escapeHtml($login['agent']) ?></td>
+                    <td data-th="<?= $block->escapeHtmlAttr(__('Actions')) ?>" class="col actions">
+                        <div class="field item choice">
+                            <input type="checkbox" class="login-checkbox checkbox login" id="login-checkbox<?= $block->escapeHtmlAttr($login['login_id']) ?>" name="login_history[]" value="<?= $block->escapeHtmlAttr($login['login_id']) ?>" />
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getToolbarHtml()) : ?>
+        <div class="toolbar loginhistory-toolbar bottom">
+            <?= $block->getToolbarHtml() ?>
+        </div>
+    <?php endif; ?>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "loginHistorySelector": {}
+        }
+    }
+    </script>
+<?php else : ?>
+    <div class="message info empty"><span><?= $block->escapeHtml(__('No records')) ?></span></div>
+<?php endif; ?>

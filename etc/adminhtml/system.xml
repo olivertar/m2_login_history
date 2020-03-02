@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="orangecat" translate="label" sortOrder="1">
+            <label>Orangecat</label>
+        </tab>
+        <section id="customerloginhistory" translate="label comment" sortOrder="10" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Customer Login History</label>
+            <tab>orangecat</tab>
+            <resource>Orangecat_CustomerLoginHistory::config</resource>
+            <group id="general" translate="label comment" sortOrder="10" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <comment>The service will not be available until you download the IP's database</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="fakeip" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Simulate IP</label>
+                    <comment><![CDATA[US: 162.254.206.227 - UK: 185.86.151.11 - AR: 190.189.94.33]]></comment>
+                </field>
+            </group>
+            <group id="cleanup" translate="label comment" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Clean</label>
+                <attribute type="expanded">1</attribute>
+                <field id="enabled" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Clean</label>
+                    <comment><![CDATA[Enable access history cleanup]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="period" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Period</label>
+                    <source_model>Orangecat\CustomerLoginHistory\Model\Config\Source\Periods</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Delete records prior to this period]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

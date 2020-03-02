@@ -1,0 +1,44 @@
+<?php
+$lastLogin = $block->getLastLogin();
+if ($lastLogin):
+?>
+<div class="block block-dashboard-info">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Login Information')) ?></strong></div>
+    <div class="block-content">
+        <div class="box box-information">
+            <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Last Login')) ?></span>
+            </strong>
+            <div class="box-content">
+                <p>
+                    <span><?= $block->escapeHtml(__('IP')) ?>:</span>
+                    <?= $lastLogin['ip']; ?>
+                </p>
+                <?php if ($block->isGeoIpEnabled()): ?>
+                <p>
+                    <span><?= $block->escapeHtml(__('Country')) ?>:</span>
+                    <?= $lastLogin['country']; ?>
+                </p>
+                <p>
+                    <span><?= $block->escapeHtml(__('City')) ?>:</span>
+                    <?= $lastLogin['city']; ?>
+                </p>
+                <?php endif; ?>
+                <p>
+                    <span><?= $block->escapeHtml(__('Date/Time')) ?>:</span>
+                    <?= $lastLogin['login_time']; ?>
+                </p>
+                <!--
+                <p>
+                    <span><?= $block->escapeHtml(__('Agent')) ?>:</span>
+                    <?= $lastLogin['agent']; ?>
+                </p>
+                -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<?php
+endif;
+?>

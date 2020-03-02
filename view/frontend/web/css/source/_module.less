@@ -1,0 +1,87 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .loginhistory_actions {
+        text-align: right;
+        margin-bottom: @indent__base;
+        .delete-all-login-history {
+            background: #ff0000;
+            border: 1px solid #ff0000;
+            box-shadow: 0 0 0 0;
+            color: #ffffff;
+        }
+    }
+
+    .wrapper-animation {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: #fff;
+        z-index: 100;
+    }.ball {
+         width: 22px;
+         height: 22px;
+         border-radius: 11px;
+         margin: 0 10px;
+
+         animation: 2s bounce ease infinite;
+     }.blue {
+          background-color: #4285F5;
+      }.red {
+           background-color: #EA4436;
+           animation-delay: .25s;
+       }.yellow {
+            background-color: #FBBD06;
+            animation-delay: .5s;
+        }.green {
+             background-color: #34A952;
+             animation-delay: .75s;
+         }@keyframes bounce {
+              50% {
+                  transform: translateY(25px);
+              }
+          }
+}
+
+//
+//  Mobile @screen__m
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .action-buttons {
+        margin-top: @indent__base;
+    }
+}
+
+//
+//  Mobile @screen__s
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .action-buttons {
+        margin-left: @indent__base;
+        display: inline;
+    }
+}
+
+//
+//  Desktop large
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+}
